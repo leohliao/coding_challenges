@@ -60,3 +60,9 @@ body {
   transform: scale(1.4);
   transform-origin: center;
 }
+
+.labels-data-circle .open {
+  transform: scale(1.6);
+  transform-origin: center;
+
+}

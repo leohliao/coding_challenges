@@ -18646,6 +18646,17 @@ var Chart = function (_React$Component) {
             var day = time.getDate();
             return 160 + 96 * (year % 2017 + month % 11 + day % 27);
           };
+          var circles = document.getElementsByClassName('labels-data-circle');
+          circles.forEach = Array.prototype.forEach;
+          var toggle = function toggle(e) {
+            e.target.classList.toggle('open');
+            console.log(e.target.classList);
+          };
+
+          circles.forEach(function (circle) {
+            circle.addEventListener('click', toggle);
+          });
+
           draw.appendChild(_this5.makeSVGEl("circle", {
             "cx": analyzeTime(),
             "cy": _this5.state.height - 100 - analyzeDuration,
@@ -18690,15 +18701,6 @@ var Chart = function (_React$Component) {
     value: function componentDidMount() {
       setTimeout(this.setState({ "loading": false }), 0);
       window.addEventListener('load', this.handleRender);
-      var circles = document.getElementsByClassName('labels-data-circle');
-      [].forEach.call(circles, function (el) {
-        console.log(el);
-      });
-      // [...circles].forEach(circle => {
-      //   circle.addEventListener('click', (e) => {
-      //     console.log(e.target);
-      //   })
-      // })
     }
   }, {
     key: "render",

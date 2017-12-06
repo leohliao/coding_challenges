@@ -167,6 +167,17 @@ class Chart extends React.Component {
           return 160 + (96 *((year % 2017) + (month % 11) + (day % 27)));
 
         };
+        const circles = document.getElementsByClassName('labels-data-circle');
+        circles.forEach = Array.prototype.forEach;
+        const toggle = (e) => {
+          e.target.classList.toggle('open');
+          console.log(e.target.classList);
+        }
+
+        circles.forEach(circle => {
+          circle.addEventListener('click', toggle)
+        })
+
         draw.appendChild(this.makeSVGEl("circle", {
           "cx": analyzeTime(),
           "cy": (this.state.height - 100) - analyzeDuration,
@@ -200,15 +211,6 @@ class Chart extends React.Component {
   componentDidMount(){
     setTimeout(this.setState({"loading": false}), 0);
     window.addEventListener('load', this.handleRender);
-    const circles = document.getElementsByClassName('labels-data-circle');
-    [].forEach.call(circles, function(el) {
-      console.log(el);
-    });
-    // [...circles].forEach(circle => {
-    //   circle.addEventListener('click', (e) => {
-    //     console.log(e.target);
-    //   })
-    // })
   }
 
   render(){
