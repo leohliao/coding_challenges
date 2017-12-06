@@ -18312,6 +18312,58 @@ var plotpoints = [{
   "start_time": "2017-11-28T14:12:12Z",
   "status": "pass",
   "duration": 200
+}, {
+  "start_time": "2017-12-02T14:12:12Z",
+  "status": "fail",
+  "duration": 150
+}, {
+  "start_time": "2017-12-05T15:00:01Z",
+  "status": "pass",
+  "duration": 86
+}, {
+  "start_time": "2017-12-04T14:12:12Z",
+  "status": "fail",
+  "duration": 190
+}, {
+  "start_time": "2017-12-02T14:12:12Z",
+  "status": "error",
+  "duration": 144
+}, {
+  "start_time": "2017-12-02T02:12:12Z",
+  "status": "error",
+  "duration": 227
+}, {
+  "start_time": "2017-12-03T17:12:12Z",
+  "status": "pass",
+  "duration": 260
+}, {
+  "start_time": "2017-12-01T02:12:12Z",
+  "status": "error",
+  "duration": 62
+}, {
+  "start_time": "2017-12-02T02:12:12Z",
+  "status": "error",
+  "duration": 227
+}, {
+  "start_time": "2017-12-28T02:12:12Z",
+  "status": "pass",
+  "duration": 280
+}, {
+  "start_time": "2017-11-30T18:12:12Z",
+  "status": "error",
+  "duration": 108
+}, {
+  "start_time": "2017-12-02T03:12:12Z",
+  "status": "fail",
+  "duration": 27
+}, {
+  "start_time": "2017-11-30T02:12:12Z",
+  "status": "error",
+  "duration": 69
+}, {
+  "start_time": "2017-12-01T20:12:12Z",
+  "status": "pass",
+  "duration": 149
 }];
 
 var DataRender = function DataRender() {
@@ -18344,6 +18396,8 @@ var _react = __webpack_require__(2);
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -18397,7 +18451,6 @@ var Chart = function (_React$Component) {
           svg.appendChild(draw);
         }
         for (var i = 100; i < height; i += 30) {
-          console.log(i);
           draw.appendChild(_this2.makeSVGEl("line", {
             "x1": 120,
             "x2": width,
@@ -18460,14 +18513,14 @@ var Chart = function (_React$Component) {
     value: function handleXGrids() {
       var _this4 = this;
 
-      var width = this.state.height;
+      var width = this.state.width;
       var drawXGrids = function drawXGrids() {
         var svg = document.getElementsByTagName('svg')[0];
         var draw = _this4.makeSVGEl("g", { class: "labels y-labels" });
         if (svg !== undefined) {
           svg.appendChild(draw);
         }
-        for (var i = 100; i < width; i += 100) {
+        for (var i = 100; i < width; i += 96) {
           draw.appendChild(_this4.makeSVGEl("line", {
             "x1": i + 60,
             "x2": i + 60,
@@ -18494,37 +18547,37 @@ var Chart = function (_React$Component) {
         { className: "labels x-labels" },
         _react2.default.createElement(
           "text",
-          { x: "140", y: "425" },
+          { x: "140", y: "430" },
           "Aug 01"
         ),
         _react2.default.createElement(
           "text",
-          { x: "240", y: "425" },
+          { x: "236", y: "430" },
           "Aug 02"
         ),
         _react2.default.createElement(
           "text",
-          { x: "340", y: "425" },
+          { x: "332", y: "430" },
           "Aug 03"
         ),
         _react2.default.createElement(
           "text",
-          { x: "440", y: "425" },
+          { x: "428", y: "430" },
           "Aug 04"
         ),
         _react2.default.createElement(
           "text",
-          { x: "540", y: "425" },
+          { x: "524", y: "430" },
           "Aug 06"
         ),
         _react2.default.createElement(
           "text",
-          { x: "640", y: "425" },
+          { x: "620", y: "430" },
           "Aug 07"
         ),
         _react2.default.createElement(
           "text",
-          { x: "740", y: "425" },
+          { x: "716", y: "430" },
           "Aug 08"
         ),
         _react2.default.createElement(
@@ -18588,9 +18641,15 @@ var Chart = function (_React$Component) {
                 return "rgb(217,78,78)";
             };
           };
-          var analyzeTime = function analyzeTime() {};
+          var analyzeTime = function analyzeTime() {
+            var time = new Date(data[i].start_time);
+            var year = time.getFullYear();
+            var month = time.getMonth() + 1;
+            var day = time.getDate();
+            return 160 + 96 * (year % 2017 + month % 11 + day % 27);
+          };
           draw.appendChild(_this5.makeSVGEl("circle", {
-            "cx": 300,
+            "cx": analyzeTime(),
             "cy": _this5.state.height - 100 - analyzeDuration,
             "r": 5,
             "fill": analyzeColor()
@@ -18632,6 +18691,12 @@ var Chart = function (_React$Component) {
     value: function componentDidMount() {
       setTimeout(this.setState({ "loading": false }), 0);
       window.addEventListener('load', this.handleRender);
+      var circles = document.getElementsByTagName('circle');
+      [].concat(_toConsumableArray(circles)).forEach(function (circle) {
+        circle.addEventListener('click', function (e) {
+          console.log(e.target);
+        });
+      });
     }
   }, {
     key: "render",

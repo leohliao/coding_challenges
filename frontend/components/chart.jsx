@@ -35,7 +35,6 @@ class Chart extends React.Component {
         svg.appendChild(draw);
       }
       for (let i = 100; i < height; i += 30) {
-        console.log(i);
         draw.appendChild(this.makeSVGEl("line", {
           "x1": 120,
           "x2": width,
@@ -86,14 +85,14 @@ class Chart extends React.Component {
   } // end handleYLabels
 
   handleXGrids(){
-    const width = (this.state.height);
+    const width = (this.state.width);
     const drawXGrids = () => {
       var svg = document.getElementsByTagName('svg')[0];
       let draw = this.makeSVGEl("g", { class:"labels y-labels" });
       if (svg !== undefined) {
         svg.appendChild(draw);
       }
-      for (let i = 100; i < width; i += 100) {
+      for (let i = 100; i < width; i += 96) {
         draw.appendChild(this.makeSVGEl("line", {
           "x1": i + 60,
           "x2": i + 60,
@@ -114,13 +113,13 @@ class Chart extends React.Component {
     const width = (this.state.width)/2;
     return (
       <g className="labels x-labels">
-        <text x="140" y="425">Aug 01</text>
-        <text x="240" y="425">Aug 02</text>
-        <text x="340" y="425">Aug 03</text>
-        <text x="440" y="425">Aug 04</text>
-        <text x="540" y="425">Aug 06</text>
-        <text x="640" y="425">Aug 07</text>
-        <text x="740" y="425">Aug 08</text>
+        <text x="140" y="430">Aug 01</text>
+        <text x="236" y="430">Aug 02</text>
+        <text x="332" y="430">Aug 03</text>
+        <text x="428" y="430">Aug 04</text>
+        <text x="524" y="430">Aug 06</text>
+        <text x="620" y="430">Aug 07</text>
+        <text x="716" y="430">Aug 08</text>
         <text x={String(width)} y="450" className="label-title">(Timeline)</text>
       </g>
     )
@@ -161,10 +160,15 @@ class Chart extends React.Component {
           };
         };
         const analyzeTime = () => {
-          
+          const time = new Date (data[i].start_time)
+          const year = time.getFullYear();
+          const month = time.getMonth() + 1;
+          const day = time.getDate();
+          return 160 + (96 *((year % 2017) + (month % 11) + (day % 27)));
+
         };
         draw.appendChild(this.makeSVGEl("circle", {
-          "cx": 300,
+          "cx": analyzeTime(),
           "cy": (this.state.height - 100) - analyzeDuration,
           "r": 5,
           "fill": analyzeColor()
@@ -195,6 +199,12 @@ class Chart extends React.Component {
   componentDidMount(){
     setTimeout(this.setState({"loading": false}), 0);
     window.addEventListener('load', this.handleRender);
+    const circles = document.getElementsByTagName('circle');
+    [...circles].forEach(circle => {
+      circle.addEventListener('click', (e) => {
+        console.log(e.target);
+      })
+    })
   }
 
   render(){
