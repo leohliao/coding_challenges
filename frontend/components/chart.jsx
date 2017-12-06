@@ -169,13 +169,11 @@ class Chart extends React.Component {
         };
         const circles = document.getElementsByClassName('labels-data-circle');
         circles.forEach = Array.prototype.forEach;
-        const toggle = (e) => {
-          e.target.classList.toggle('open');
-          console.log(e.target.classList);
-        }
-
         circles.forEach(circle => {
-          circle.addEventListener('click', toggle)
+          circle.addEventListener('click', ()=>{
+            circle.setAttribute("transform","scale(1.6)")
+            circle.setAttribute("transform-origin","center")
+          })
         })
 
         draw.appendChild(this.makeSVGEl("circle", {

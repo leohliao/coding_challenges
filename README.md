@@ -107,7 +107,7 @@ handleYGrid(){
   ```
 
   There are still many things that I have not get to,
-  but I definitely feel like I have set a good path for myself to go beyond the limit rather than relying on the library.  
+  but I definitely feel like I have set a good base in my programs for myself to go beyond the limit rather than relying on the library. Although I was not satisfy with what is available to show so far, I feel very good about how much I have learned in 24 hours.
 
   I hope you enjoy reading this README file and please feel free to contact me to give me some feedback.  
 

@@ -18648,13 +18648,11 @@ var Chart = function (_React$Component) {
           };
           var circles = document.getElementsByClassName('labels-data-circle');
           circles.forEach = Array.prototype.forEach;
-          var toggle = function toggle(e) {
-            e.target.classList.toggle('open');
-            console.log(e.target.classList);
-          };
-
           circles.forEach(function (circle) {
-            circle.addEventListener('click', toggle);
+            circle.addEventListener('click', function () {
+              circle.setAttribute("transform", "scale(1.6)");
+              circle.setAttribute("transform-origin", "center");
+            });
           });
 
           draw.appendChild(_this5.makeSVGEl("circle", {
