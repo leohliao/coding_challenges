@@ -18565,8 +18565,11 @@ var Chart = function (_React$Component) {
     key: "handleData",
     value: function handleData() {
       var data = this.props.data;
+      // console.log(data[0].status)
 
-      console.log(data[0].status);
+      var color = data.map(function (data) {
+        return data.status;
+      });
 
       return _react2.default.createElement(
         "g",
@@ -18599,6 +18602,11 @@ var Chart = function (_React$Component) {
     value: function componentDidMount() {
       setTimeout(this.setState({ "loading": false }), 0);
       this.handleRender();
+      var circles = document.getElementsByTagName('circle');
+      console.log(circles);
+      // circles.forEach(circle => circle.addEventListener('click', (e) => {
+      //     console.log(e.target);
+      // }));
     }
   }, {
     key: "render",

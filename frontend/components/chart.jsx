@@ -126,7 +126,10 @@ class Chart extends React.Component {
 
   handleData(){
     const {data} = this.props;
-    console.log(data[0].status)
+    // console.log(data[0].status)
+    const color = data.map(data => {
+      return data.status
+    })
 
     return (
       <g className="labels-data">
@@ -151,6 +154,11 @@ class Chart extends React.Component {
   componentDidMount(){
     setTimeout(this.setState({"loading": false}), 0);
     this.handleRender();
+    const circles = document.getElementsByTagName('circle');
+    console.log(circles);
+    // circles.forEach(circle => circle.addEventListener('click', (e) => {
+    //     console.log(e.target);
+    // }));
   }
 
   render(){
