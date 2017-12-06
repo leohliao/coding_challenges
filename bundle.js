@@ -18397,6 +18397,7 @@ var Chart = function (_React$Component) {
           svg.appendChild(draw);
         }
         for (var i = 100; i < height; i += 30) {
+          console.log(i);
           draw.appendChild(_this2.makeSVGEl("line", {
             "x1": 120,
             "x2": width,
@@ -18563,24 +18564,47 @@ var Chart = function (_React$Component) {
   }, {
     key: "handleData",
     value: function handleData() {
+      var _this5 = this;
+
       var data = this.props.data;
       // console.log(data[0].status)
 
-      var color = data.map(function (data) {
-        return data.status;
-      });
-      var month = void 0;
-      var year = void 0;
-      var dates = data.map(function (d) {
-        var date = new Date(d.start_time);
-        month = date.getMonth();
-        year = date.getFullYear();
-      });
+      var drawData = function drawData() {
+        var svg = document.getElementsByTagName('svg')[0];
+        var draw = _this5.makeSVGEl("g", { class: "data" });
+        if (svg !== undefined) {
+          svg.appendChild(draw);
+        }
 
+        var _loop = function _loop(i) {
+          var analyzeDuration = data[i].duration;
+          var analyzeColor = function analyzeColor() {
+            switch (data[i].status) {
+              case "pass":
+                return "rgb(117,183,56)";
+              case "error":
+                return "rgb(232,145,75)";
+              case "fail":
+                return "rgb(217,78,78)";
+            };
+          };
+          var analyzeTime = function analyzeTime() {};
+          draw.appendChild(_this5.makeSVGEl("circle", {
+            "cx": 300,
+            "cy": _this5.state.height - 100 - analyzeDuration,
+            "r": 5,
+            "fill": analyzeColor()
+          }));
+        };
+
+        for (var i = 0; i < data.length; i++) {
+          _loop(i);
+        } // end for
+      };
       return _react2.default.createElement(
         "g",
         { className: "labels-data" },
-        _react2.default.createElement("circle", { cx: "300", cy: "100", "data-value": "0", r: "5", className: "green" })
+        drawData()
       );
     }
   }, {
@@ -18608,12 +18632,6 @@ var Chart = function (_React$Component) {
     value: function componentDidMount() {
       setTimeout(this.setState({ "loading": false }), 0);
       window.addEventListener('load', this.handleRender);
-
-      // const circles = document.getElementsByTagName('circle');
-      // console.log(circles);
-      // circles.forEach(circle => circle.addEventListener('click', (e) => {
-      //     console.log(e.target);
-      // }));
     }
   }, {
     key: "render",

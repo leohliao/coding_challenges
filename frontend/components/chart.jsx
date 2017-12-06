@@ -35,6 +35,7 @@ class Chart extends React.Component {
         svg.appendChild(draw);
       }
       for (let i = 100; i < height; i += 30) {
+        console.log(i);
         draw.appendChild(this.makeSVGEl("line", {
           "x1": 120,
           "x2": width,
@@ -141,21 +142,39 @@ class Chart extends React.Component {
   handleData(){
     const {data} = this.props;
     // console.log(data[0].status)
-    const color = data.map(data => {
-      return data.status
-    })
-    let month;
-    let year;
-    const dates = data.map(d => {
-      const date = new Date (d.start_time);
-      month = date.getMonth();
-      year = date.getFullYear();
+    const drawData = () => {
+      var svg = document.getElementsByTagName('svg')[0];
+      let draw = this.makeSVGEl("g", { class:"data" });
+      if (svg !== undefined) {
+        svg.appendChild(draw);
+      }
+      for (let i = 0; i < data.length; i ++){
+        const analyzeDuration = data[i].duration;
+        const analyzeColor = () => {
+          switch (data[i].status){
+            case "pass":
+              return ("rgb(117,183,56)");
+            case "error":
+              return ("rgb(232,145,75)");
+            case "fail":
+              return ("rgb(217,78,78)");
+          };
+        };
+        const analyzeTime = () => {
+          
+        };
+        draw.appendChild(this.makeSVGEl("circle", {
+          "cx": 300,
+          "cy": (this.state.height - 100) - analyzeDuration,
+          "r": 5,
+          "fill": analyzeColor()
+        }))
+      } // end for
 
-    })
-
+    };
     return (
       <g className="labels-data">
-        <circle cx="300" cy="100" data-value="0" r="5" className="green"></circle>
+        {drawData()}
       </g>
     )
   }
@@ -176,12 +195,6 @@ class Chart extends React.Component {
   componentDidMount(){
     setTimeout(this.setState({"loading": false}), 0);
     window.addEventListener('load', this.handleRender);
-
-    // const circles = document.getElementsByTagName('circle');
-    // console.log(circles);
-    // circles.forEach(circle => circle.addEventListener('click', (e) => {
-    //     console.log(e.target);
-    // }));
   }
 
   render(){
