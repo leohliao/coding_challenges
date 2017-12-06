@@ -1,29 +1,59 @@
-h1 {
-  color: red;
+body {
+  font-family: sans-serif;
 }
 
-.chart-container {
-  height: 360px;
-  width: 100%;
+/*.graph .labels.x-labels {
+  text-anchor: middle;
 }
 
-.axis path,
-.axis line {
-    fill: none;
-    stroke: #eee;
-    shape-rendering: crispEdges;
-}
- 
-.axis text {
-    font-family: sans-serif;
-    font-size: 11px;
+.graph .labels.y-labels {
+  text-anchor: end;
+}*/
+
+.graph {
+  height: 500px;
+  width: 800px;
 }
 
-.loading {
-    font-family: sans-serif;
-    font-size: 15px;
+.graph .grid {
+  stroke: #ccc;
+  stroke-dasharray: 0;
+  stroke-width: 1;
 }
 
-.circle {
-    fill: #222;
+.y-grid-children {
+  stroke-dasharray: 5;
+}
+
+.labels {
+  font-size: 13px;
+  fill: rgb(210,210,210);
+}
+
+.label-title {
+  text-transform: uppercase;
+  font-size: 10px;
+
+}
+
+.labels-data .green {
+  fill: rgb(117,183,56);
+}
+
+.labels-data .orange {
+  fill: rgb(232,145,75);
+}
+
+.labels-data .red {
+  fill: rgb(217,78,78);
+}
+
+.data-title {
+  font-size: 10px;
+  fill: rgb(150,150,150);
+}
+
+.data circle:hover {
+  fill: red;
+  stroke-width: 1;
 }
