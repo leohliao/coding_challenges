@@ -30,33 +30,22 @@ class Chart extends React.Component {
     const width = this.state.width;
     const drawYGrids = () => {
       var svg = document.getElementsByTagName('svg')[0];
-      let draw = this.makeSVGEl("g", { className:"grid y-grid" });
+      let draw = this.makeSVGEl("g", { class:"grid y-grid" });
       if (svg !== undefined) {
         svg.appendChild(draw);
       }
-
       for (let i = 100; i < height; i += 30) {
         draw.appendChild(this.makeSVGEl("line", {
           "x1": 120,
           "x2": width,
           "y1": i,
           "y2": i,
-          "className": "y-grid-children",
+          "class": "y-grid-children",
           "stroke": "#ccc",
           "stroke-dasharray": 5
         }))
       } // end for
     };
-    // <line x1="120" x2="800" y1="100" y2="100" className="y-grid-children" ></line>
-    // <line x1="120" x2="800" y1="130" y2="130" className="y-grid-children" ></line>
-    // <line x1="120" x2="800" y1="160" y2="160" className="y-grid-children" ></line>
-    // <line x1="120" x2="800" y1="190" y2="190" className="y-grid-children" ></line>
-    // <line x1="120" x2="800" y1="220" y2="220" className="y-grid-children" ></line>
-    // <line x1="120" x2="800" y1="250" y2="250" className="y-grid-children" ></line>
-    // <line x1="120" x2="800" y1="280" y2="280" className="y-grid-children" ></line>
-    // <line x1="120" x2="800" y1="310" y2="310" className="y-grid-children" ></line>
-    // <line x1="120" x2="800" y1="340" y2="340" className="y-grid-children" ></line>
-    // <line x1="120" x2="800" y1="370" y2="370" className="y-grid-children" ></line>
 
     return (
       <g className="grid y-grid">
@@ -68,29 +57,54 @@ class Chart extends React.Component {
 
   handleYLabels(){
     const height = (this.state.height)/2 - 20;
+    const drawYLabels = () => {
+      var svg = document.getElementsByTagName('svg')[0];
+      let draw = this.makeSVGEl("g", { class:"labels y-labels" });
+      if (svg !== undefined) {
+        svg.appendChild(draw);
+      }
+      for (let i = 100; i < (this.state.height - 100); i += 60) {
+        let newText = this.makeSVGEl("text", {
+          "x": 80,
+          "y": i + 3,
+          "color": "#ccc",
+          "font-size": 13
+        });
+        let j = 5;
+        let textNode = document.createTextNode(`${j} min`);
+        newText.appendChild(textNode);
+        draw.appendChild(newText)
+      } // end for
+    };
     return (
       <g className="labels y-labels">
         <text x="05" y={height.toString()} className="label-title">(Duration)</text>
-        <text x="80" y="103">5 min</text>
-        <text x="80" y="163">4 min</text>
-        <text x="80" y="223">3 min</text>
-        <text x="80" y="283">2 min </text>
-        <text x="80" y="343">1 min</text>
+        {drawYLabels()}
       </g>
     )
   } // end handleYLabels
 
   handleXGrids(){
+    const width = (this.state.height);
+    const drawXGrids = () => {
+      var svg = document.getElementsByTagName('svg')[0];
+      let draw = this.makeSVGEl("g", { class:"labels y-labels" });
+      if (svg !== undefined) {
+        svg.appendChild(draw);
+      }
+      for (let i = 100; i < width; i += 100) {
+        draw.appendChild(this.makeSVGEl("line", {
+          "x1": i + 60,
+          "x2": i + 60,
+          "y1": 405,
+          "y2": 415,
+          "stroke": "#ccc"
+        }))
+      } // end for
+    };
     return (
       <g className="grid x-grid">
-        <line x1="160" x2="160" y1="405" y2="415"></line>
-        <line x1="260" x2="260" y1="405" y2="415"></line>
-        <line x1="360" x2="360" y1="405" y2="415"></line>
-        <line x1="460" x2="460" y1="405" y2="415"></line>
-        <line x1="560" x2="560" y1="405" y2="415"></line>
-        <line x1="660" x2="660" y1="405" y2="415"></line>
-        <line x1="760" x2="760" y1="405" y2="415"></line>
-        <line x1="860" x2="860" y1="405" y2="415"></line>
+        {drawXGrids()};
       </g>
     )
   } // end handleXGrids

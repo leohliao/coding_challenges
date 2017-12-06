@@ -18392,33 +18392,22 @@ var Chart = function (_React$Component) {
       var width = this.state.width;
       var drawYGrids = function drawYGrids() {
         var svg = document.getElementsByTagName('svg')[0];
-        var draw = _this2.makeSVGEl("g", { className: "grid y-grid" });
+        var draw = _this2.makeSVGEl("g", { class: "grid y-grid" });
         if (svg !== undefined) {
           svg.appendChild(draw);
         }
-
         for (var i = 100; i < height; i += 30) {
           draw.appendChild(_this2.makeSVGEl("line", {
             "x1": 120,
             "x2": width,
             "y1": i,
             "y2": i,
-            "className": "y-grid-children",
+            "class": "y-grid-children",
             "stroke": "#ccc",
             "stroke-dasharray": 5
           }));
         } // end for
       };
-      // <line x1="120" x2="800" y1="100" y2="100" className="y-grid-children" ></line>
-      // <line x1="120" x2="800" y1="130" y2="130" className="y-grid-children" ></line>
-      // <line x1="120" x2="800" y1="160" y2="160" className="y-grid-children" ></line>
-      // <line x1="120" x2="800" y1="190" y2="190" className="y-grid-children" ></line>
-      // <line x1="120" x2="800" y1="220" y2="220" className="y-grid-children" ></line>
-      // <line x1="120" x2="800" y1="250" y2="250" className="y-grid-children" ></line>
-      // <line x1="120" x2="800" y1="280" y2="280" className="y-grid-children" ></line>
-      // <line x1="120" x2="800" y1="310" y2="310" className="y-grid-children" ></line>
-      // <line x1="120" x2="800" y1="340" y2="340" className="y-grid-children" ></line>
-      // <line x1="120" x2="800" y1="370" y2="370" className="y-grid-children" ></line>
 
       return _react2.default.createElement(
         "g",
@@ -18431,7 +18420,28 @@ var Chart = function (_React$Component) {
   }, {
     key: "handleYLabels",
     value: function handleYLabels() {
+      var _this3 = this;
+
       var height = this.state.height / 2 - 20;
+      var drawYLabels = function drawYLabels() {
+        var svg = document.getElementsByTagName('svg')[0];
+        var draw = _this3.makeSVGEl("g", { class: "labels y-labels" });
+        if (svg !== undefined) {
+          svg.appendChild(draw);
+        }
+        for (var i = 100; i < _this3.state.height - 100; i += 60) {
+          var newText = _this3.makeSVGEl("text", {
+            "x": 80,
+            "y": i + 3,
+            "color": "#ccc",
+            "font-size": 13
+          });
+          var j = 5;
+          var textNode = document.createTextNode(j + " min");
+          newText.appendChild(textNode);
+          draw.appendChild(newText);
+        } // end for
+      };
       return _react2.default.createElement(
         "g",
         { className: "labels y-labels" },
@@ -18440,48 +18450,37 @@ var Chart = function (_React$Component) {
           { x: "05", y: height.toString(), className: "label-title" },
           "(Duration)"
         ),
-        _react2.default.createElement(
-          "text",
-          { x: "80", y: "103" },
-          "5 min"
-        ),
-        _react2.default.createElement(
-          "text",
-          { x: "80", y: "163" },
-          "4 min"
-        ),
-        _react2.default.createElement(
-          "text",
-          { x: "80", y: "223" },
-          "3 min"
-        ),
-        _react2.default.createElement(
-          "text",
-          { x: "80", y: "283" },
-          "2 min "
-        ),
-        _react2.default.createElement(
-          "text",
-          { x: "80", y: "343" },
-          "1 min"
-        )
+        drawYLabels()
       );
     } // end handleYLabels
 
   }, {
     key: "handleXGrids",
     value: function handleXGrids() {
+      var _this4 = this;
+
+      var width = this.state.height;
+      var drawXGrids = function drawXGrids() {
+        var svg = document.getElementsByTagName('svg')[0];
+        var draw = _this4.makeSVGEl("g", { class: "labels y-labels" });
+        if (svg !== undefined) {
+          svg.appendChild(draw);
+        }
+        for (var i = 100; i < width; i += 100) {
+          draw.appendChild(_this4.makeSVGEl("line", {
+            "x1": i + 60,
+            "x2": i + 60,
+            "y1": 405,
+            "y2": 415,
+            "stroke": "#ccc"
+          }));
+        } // end for
+      };
       return _react2.default.createElement(
         "g",
         { className: "grid x-grid" },
-        _react2.default.createElement("line", { x1: "160", x2: "160", y1: "405", y2: "415" }),
-        _react2.default.createElement("line", { x1: "260", x2: "260", y1: "405", y2: "415" }),
-        _react2.default.createElement("line", { x1: "360", x2: "360", y1: "405", y2: "415" }),
-        _react2.default.createElement("line", { x1: "460", x2: "460", y1: "405", y2: "415" }),
-        _react2.default.createElement("line", { x1: "560", x2: "560", y1: "405", y2: "415" }),
-        _react2.default.createElement("line", { x1: "660", x2: "660", y1: "405", y2: "415" }),
-        _react2.default.createElement("line", { x1: "760", x2: "760", y1: "405", y2: "415" }),
-        _react2.default.createElement("line", { x1: "860", x2: "860", y1: "405", y2: "415" })
+        drawXGrids(),
+        ";"
       );
     } // end handleXGrids
 

@@ -23,10 +23,10 @@ body {
   stroke-width: 1;
 }
 
-.y-grid-children {
+/*.y-grid-children {
   stroke-dasharray: 5;
   fill: rgb(229,229,229);
-}
+}*/
 
 .labels {
   font-size: 13px;
