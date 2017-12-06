@@ -312,15 +312,15 @@ var _reactDom = __webpack_require__(189);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _chart = __webpack_require__(490);
+var _data_render = __webpack_require__(720);
 
-var _chart2 = _interopRequireDefault(_chart);
+var _data_render2 = _interopRequireDefault(_data_render);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
-  _reactDom2.default.render(_react2.default.createElement(_chart2.default, null), root);
+  _reactDom2.default.render(_react2.default.createElement(_data_render2.default, null), root);
 });
 
 /***/ }),
@@ -17816,15 +17816,16 @@ var Chart = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).call(this, props));
 
-    _this.state = {
-      "radius": 5
-    };
+    _this.state = {};
     return _this;
   }
 
   _createClass(Chart, [{
     key: "render",
     value: function render() {
+      var data = this.props.data;
+
+      console.log(data);
       return _react2.default.createElement(
         "div",
         { className: "chart-container" },
@@ -18085,6 +18086,66 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
+
+/***/ }),
+
+/***/ 720:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(35);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _chart = __webpack_require__(490);
+
+var _chart2 = _interopRequireDefault(_chart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var plotpoints = [{
+  "start_time": "2017-11-29T04:56:12Z",
+  "status": "pass",
+  "duration": 126
+}, {
+  "start_time": "2017-11-28T03:22:12Z",
+  "status": "error",
+  "duration": 205
+}, {
+  "start_time": "2017-11-28T02:24:12Z",
+  "status": "fail",
+  "duration": 20
+}, {
+  "start_time": "2017-11-28T05:24:12Z",
+  "status": "pass",
+  "duration": 90
+}, {
+  "start_time": "2017-11-29T06:24:12Z",
+  "status": "error",
+  "duration": 90
+}, {
+  "start_time": "2017-11-28T14:12:12Z",
+  "status": "pass",
+  "duration": 200
+}];
+
+var DataRender = function DataRender() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(_chart2.default, {
+      data: plotpoints
+    })
+  );
+};
+
+exports.default = DataRender;
 
 /***/ }),
 

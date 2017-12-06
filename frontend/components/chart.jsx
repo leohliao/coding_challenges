@@ -4,12 +4,12 @@ class Chart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      "radius": 5
     }
   }
 
-
   render(){
+    const {data} = this.props;
+    console.log(data);
     return (
       <div className="chart-container">
         <svg className="graph">
