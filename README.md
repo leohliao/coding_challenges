@@ -106,6 +106,12 @@ handleYGrid(){
   } // end handleYGrid
   ```
 
+  There are still many things that I have not get to,
+  but I definitely feel like I have set a good path for myself to go beyond the limit rather than relying on the library.  
+
+  I hope you enjoy reading this README file and please feel free to contact me to give me some feedback.  
+
+  Best Wishes!
 
 
 
