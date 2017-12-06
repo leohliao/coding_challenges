@@ -17816,136 +17816,209 @@ var Chart = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      "width": _this.props.width || 500,
+      "height": _this.props.height || 850
+    };
+    _this.handleYGrid = _this.handleYGrid.bind(_this);
+    _this.handleYLabels = _this.handleYLabels.bind(_this);
+    _this.handleXGrids = _this.handleXGrids.bind(_this);
+    _this.handleXLabels = _this.handleXLabels.bind(_this);
+    _this.handleDataLabels = _this.handleDataLabels.bind(_this);
+    _this.handleRender = _this.handleRender.bind(_this);
     return _this;
   }
 
   _createClass(Chart, [{
+    key: "handleYGrid",
+    value: function handleYGrid() {
+      return _react2.default.createElement(
+        "g",
+        { className: "grid y-grid" },
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "60", y2: "60", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "90", y2: "90", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "120", y2: "120", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "150", y2: "150", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "180", y2: "180", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "210", y2: "210", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "240", y2: "240", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "270", y2: "270", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "300", y2: "300", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "330", y2: "330", className: "y-grid-children" }),
+        _react2.default.createElement("line", { x1: "120", x2: "800", y1: "360", y2: "360" })
+      );
+    } // end handleYGrid
+
+  }, {
+    key: "handleYLabels",
+    value: function handleYLabels() {
+      return _react2.default.createElement(
+        "g",
+        { className: "labels y-labels" },
+        _react2.default.createElement(
+          "text",
+          { x: "05", y: "260", className: "label-title" },
+          "(Duration)"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "80", y: "63" },
+          "5 min"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "80", y: "123" },
+          "4 min"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "80", y: "183" },
+          "3 min"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "80", y: "243" },
+          "2 min "
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "80", y: "303" },
+          "1 min"
+        )
+      );
+    } // end handleYLabels
+
+  }, {
+    key: "handleXGrids",
+    value: function handleXGrids() {
+      return _react2.default.createElement(
+        "g",
+        { className: "grid x-grid" },
+        _react2.default.createElement("line", { x1: "160", x2: "160", y1: "365", y2: "375" }),
+        _react2.default.createElement("line", { x1: "260", x2: "260", y1: "365", y2: "375" }),
+        _react2.default.createElement("line", { x1: "360", x2: "360", y1: "365", y2: "375" }),
+        _react2.default.createElement("line", { x1: "460", x2: "460", y1: "365", y2: "375" }),
+        _react2.default.createElement("line", { x1: "560", x2: "560", y1: "365", y2: "375" }),
+        _react2.default.createElement("line", { x1: "660", x2: "660", y1: "365", y2: "375" }),
+        _react2.default.createElement("line", { x1: "760", x2: "760", y1: "365", y2: "375" }),
+        _react2.default.createElement("line", { x1: "860", x2: "860", y1: "365", y2: "375" })
+      );
+    } // end handleXGrids
+
+  }, {
+    key: "handleXLabels",
+    value: function handleXLabels() {
+      return _react2.default.createElement(
+        "g",
+        { className: "labels x-labels" },
+        _react2.default.createElement(
+          "text",
+          { x: "140", y: "395" },
+          "Aug 01"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "240", y: "395" },
+          "Aug 02"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "340", y: "395" },
+          "Aug 03"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "440", y: "395" },
+          "Aug 04"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "540", y: "395" },
+          "Aug 06"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "640", y: "395" },
+          "Aug 07"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "740", y: "395" },
+          "Aug 08"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "360", y: "420", className: "label-title" },
+          "(Timeline)"
+        )
+      );
+    } // end handleXLabels
+
+  }, {
+    key: "handleDataLabels",
+    value: function handleDataLabels() {
+      return _react2.default.createElement(
+        "g",
+        { className: "labels-data" },
+        _react2.default.createElement("circle", { cx: "650", cy: "30", "data-value": "0", r: "5", className: "green" }),
+        _react2.default.createElement("circle", { cx: "700", cy: "30", "data-value": "0", r: "5", className: "orange" }),
+        _react2.default.createElement("circle", { cx: "750", cy: "30", "data-value": "0", r: "5", className: "red" }),
+        _react2.default.createElement(
+          "text",
+          { x: "658", y: "33", className: "data-title" },
+          "pass"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "708", y: "33", className: "data-title" },
+          "error"
+        ),
+        _react2.default.createElement(
+          "text",
+          { x: "758", y: "33", className: "data-title" },
+          "fail"
+        )
+      );
+    }
+  }, {
+    key: "handleData",
+    value: function handleData() {
+      var data = this.props.data;
+      // console.log(data[0].status)
+
+      return _react2.default.createElement(
+        "g",
+        { className: "labels-data" },
+        _react2.default.createElement("circle", { cx: "300", cy: "100", "data-value": "0", r: "5", className: "green" })
+      );
+    }
+  }, {
+    key: "handleRender",
+    value: function handleRender() {
+      return _react2.default.createElement(
+        "svg",
+        { className: "graph" },
+        this.handleYGrid(),
+        ";",
+        this.handleYLabels(),
+        ";",
+        this.handleXGrids(),
+        ";",
+        this.handleXLabels(),
+        ";",
+        this.handleDataLabels(),
+        ";",
+        this.handleData(),
+        ";"
+      );
+    }
+  }, {
     key: "render",
     value: function render() {
-      var data = this.props.data;
-
-      console.log(data);
       return _react2.default.createElement(
         "div",
         { className: "chart-container" },
-        _react2.default.createElement(
-          "svg",
-          { className: "graph" },
-          _react2.default.createElement(
-            "g",
-            { className: "grid y-grid" },
-            _react2.default.createElement("line", { x1: "120", x2: "800", y1: "180", y2: "180", className: "y-grid-children" }),
-            _react2.default.createElement("line", { x1: "120", x2: "800", y1: "210", y2: "210", className: "y-grid-children" }),
-            _react2.default.createElement("line", { x1: "120", x2: "800", y1: "240", y2: "240", className: "y-grid-children" }),
-            _react2.default.createElement("line", { x1: "120", x2: "800", y1: "270", y2: "270", className: "y-grid-children" }),
-            _react2.default.createElement("line", { x1: "120", x2: "800", y1: "300", y2: "300", className: "y-grid-children" }),
-            _react2.default.createElement("line", { x1: "120", x2: "800", y1: "330", y2: "330", className: "y-grid-children" }),
-            _react2.default.createElement("line", { x1: "120", x2: "800", y1: "360", y2: "360" })
-          ),
-          _react2.default.createElement(
-            "g",
-            { className: "labels y-labels" },
-            _react2.default.createElement(
-              "text",
-              { x: "05", y: "260", className: "label-title" },
-              "(Duration)"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "80", y: "183" },
-              "3 min"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "80", y: "243" },
-              "2 min "
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "80", y: "303" },
-              "1 min"
-            )
-          ),
-          _react2.default.createElement(
-            "g",
-            { className: "grid x-grid" },
-            _react2.default.createElement("line", { x1: "160", x2: "160", y1: "365", y2: "375" }),
-            _react2.default.createElement("line", { x1: "260", x2: "260", y1: "365", y2: "375" }),
-            _react2.default.createElement("line", { x1: "360", x2: "360", y1: "365", y2: "375" }),
-            _react2.default.createElement("line", { x1: "460", x2: "460", y1: "365", y2: "375" }),
-            _react2.default.createElement("line", { x1: "560", x2: "560", y1: "365", y2: "375" }),
-            _react2.default.createElement("line", { x1: "660", x2: "660", y1: "365", y2: "375" }),
-            _react2.default.createElement("line", { x1: "760", x2: "760", y1: "365", y2: "375" }),
-            _react2.default.createElement("line", { x1: "860", x2: "860", y1: "365", y2: "375" })
-          ),
-          _react2.default.createElement(
-            "g",
-            { className: "labels x-labels" },
-            _react2.default.createElement(
-              "text",
-              { x: "140", y: "395" },
-              "Aug 01"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "240", y: "395" },
-              "Aug 02"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "340", y: "395" },
-              "Aug 03"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "440", y: "395" },
-              "Aug 04"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "540", y: "395" },
-              "Aug 06"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "640", y: "395" },
-              "Aug 07"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "740", y: "395" },
-              "Aug 08"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "360", y: "420", className: "label-title" },
-              "(Timeline)"
-            )
-          ),
-          _react2.default.createElement(
-            "g",
-            { className: "labels-data" },
-            _react2.default.createElement("circle", { cx: "650", cy: "70", "data-value": "0", r: "5", className: "green" }),
-            _react2.default.createElement("circle", { cx: "700", cy: "70", "data-value": "0", r: "5", className: "orange" }),
-            _react2.default.createElement("circle", { cx: "750", cy: "70", "data-value": "0", r: "5", className: "red" }),
-            _react2.default.createElement(
-              "text",
-              { x: "658", y: "73", className: "data-title" },
-              "pass"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "708", y: "73", className: "data-title" },
-              "error"
-            ),
-            _react2.default.createElement(
-              "text",
-              { x: "758", y: "73", className: "data-title" },
-              "fail"
-            )
-          )
-        )
+        this.handleRender()
       ); // end return
     } // render
 
@@ -18141,6 +18214,7 @@ var DataRender = function DataRender() {
     null,
     _react2.default.createElement(_chart2.default, {
       data: plotpoints
+
     })
   );
 };
