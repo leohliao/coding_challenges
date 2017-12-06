@@ -57,7 +57,6 @@ body {
 }
 
 .data circle:hover {
-  box-shadow: 1px 1px 3px 2px black;
   transform: scale(1.4);
   transform-origin: center;
 }

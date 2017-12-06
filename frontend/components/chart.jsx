@@ -171,7 +171,8 @@ class Chart extends React.Component {
           "cx": analyzeTime(),
           "cy": (this.state.height - 100) - analyzeDuration,
           "r": 5,
-          "fill": analyzeColor()
+          "fill": analyzeColor(),
+          "class": "labels-data-circle"
         }))
       } // end for
 
@@ -199,12 +200,15 @@ class Chart extends React.Component {
   componentDidMount(){
     setTimeout(this.setState({"loading": false}), 0);
     window.addEventListener('load', this.handleRender);
-    const circles = document.getElementsByTagName('circle');
-    [...circles].forEach(circle => {
-      circle.addEventListener('click', (e) => {
-        console.log(e.target);
-      })
-    })
+    const circles = document.getElementsByClassName('labels-data-circle');
+    [].forEach.call(circles, function(el) {
+      console.log(el);
+    });
+    // [...circles].forEach(circle => {
+    //   circle.addEventListener('click', (e) => {
+    //     console.log(e.target);
+    //   })
+    // })
   }
 
   render(){
