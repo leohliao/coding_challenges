@@ -30,22 +30,22 @@ class Chart extends React.Component {
     const width = this.state.width;
     const drawYGrids = () => {
       var svg = document.getElementsByTagName('svg')[0];
-      let draw = this.makeSVGEl("g", { className:"grid y-grid-children" });
+      let draw = this.makeSVGEl("g", { className:"grid y-grid" });
+      if (svg !== undefined) {
+        svg.appendChild(draw);
+      }
 
-      console.log(svg);
-      console.log(draw);
-
-      for (let i = 100; i < 400; i += 30) {
+      for (let i = 100; i < height; i += 30) {
         draw.appendChild(this.makeSVGEl("line", {
           "x1": 120,
           "x2": width,
           "y1": i,
           "y2": i,
-          "className": "y-grid-children"
+          "className": "y-grid-children",
+          "stroke": "#ccc",
+          "stroke-dasharray": 5
         }))
       } // end for
-
-
     };
     // <line x1="120" x2="800" y1="100" y2="100" className="y-grid-children" ></line>
     // <line x1="120" x2="800" y1="130" y2="130" className="y-grid-children" ></line>
@@ -60,8 +60,8 @@ class Chart extends React.Component {
 
     return (
       <g className="grid y-grid">
-        {drawYGrids()}
         <line x1="120" x2={width.toString()} y1={height.toString()} y2={height.toString()}></line>
+        {drawYGrids()}
       </g>
     )
   } // end handleYGrid
@@ -130,6 +130,14 @@ class Chart extends React.Component {
     const color = data.map(data => {
       return data.status
     })
+    let month;
+    let year;
+    const dates = data.map(d => {
+      const date = new Date (d.start_time);
+      month = date.getMonth();
+      year = date.getFullYear();
+
+    })
 
     return (
       <g className="labels-data">
@@ -153,9 +161,10 @@ class Chart extends React.Component {
 
   componentDidMount(){
     setTimeout(this.setState({"loading": false}), 0);
-    this.handleRender();
-    const circles = document.getElementsByTagName('circle');
-    console.log(circles);
+    window.addEventListener('load', this.handleRender);
+
+    // const circles = document.getElementsByTagName('circle');
+    // console.log(circles);
     // circles.forEach(circle => circle.addEventListener('click', (e) => {
     //     console.log(e.target);
     // }));

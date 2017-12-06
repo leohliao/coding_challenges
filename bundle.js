@@ -18320,7 +18320,6 @@ var DataRender = function DataRender() {
     null,
     _react2.default.createElement(_chart2.default, {
       data: plotpoints
-
     })
   );
 };
@@ -18393,21 +18392,22 @@ var Chart = function (_React$Component) {
       var width = this.state.width;
       var drawYGrids = function drawYGrids() {
         var svg = document.getElementsByTagName('svg')[0];
-        var draw = _this2.makeSVGEl("g", { className: "grid y-grid-children" });
+        var draw = _this2.makeSVGEl("g", { className: "grid y-grid" });
+        if (svg !== undefined) {
+          svg.appendChild(draw);
+        }
 
-        console.log(svg);
-        console.log(draw);
-
-        for (var i = 100; i < 400; i += 30) {
+        for (var i = 100; i < height; i += 30) {
           draw.appendChild(_this2.makeSVGEl("line", {
             "x1": 120,
             "x2": width,
             "y1": i,
             "y2": i,
-            "className": "y-grid-children"
+            "className": "y-grid-children",
+            "stroke": "#ccc",
+            "stroke-dasharray": 5
           }));
         } // end for
-
       };
       // <line x1="120" x2="800" y1="100" y2="100" className="y-grid-children" ></line>
       // <line x1="120" x2="800" y1="130" y2="130" className="y-grid-children" ></line>
@@ -18423,8 +18423,8 @@ var Chart = function (_React$Component) {
       return _react2.default.createElement(
         "g",
         { className: "grid y-grid" },
-        drawYGrids(),
-        _react2.default.createElement("line", { x1: "120", x2: width.toString(), y1: height.toString(), y2: height.toString() })
+        _react2.default.createElement("line", { x1: "120", x2: width.toString(), y1: height.toString(), y2: height.toString() }),
+        drawYGrids()
       );
     } // end handleYGrid
 
@@ -18570,6 +18570,13 @@ var Chart = function (_React$Component) {
       var color = data.map(function (data) {
         return data.status;
       });
+      var month = void 0;
+      var year = void 0;
+      var dates = data.map(function (d) {
+        var date = new Date(d.start_time);
+        month = date.getMonth();
+        year = date.getFullYear();
+      });
 
       return _react2.default.createElement(
         "g",
@@ -18601,9 +18608,10 @@ var Chart = function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       setTimeout(this.setState({ "loading": false }), 0);
-      this.handleRender();
-      var circles = document.getElementsByTagName('circle');
-      console.log(circles);
+      window.addEventListener('load', this.handleRender);
+
+      // const circles = document.getElementsByTagName('circle');
+      // console.log(circles);
       // circles.forEach(circle => circle.addEventListener('click', (e) => {
       //     console.log(e.target);
       // }));

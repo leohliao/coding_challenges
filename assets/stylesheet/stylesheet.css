@@ -1,14 +1,16 @@
 body {
   font-family: sans-serif;
+  display: flex;
+  justify-content: center;
 }
 
-/*.graph .labels.x-labels {
-  text-anchor: middle;
+.graph .labels.x-labels {
+  /*text-anchor: middle;*/
 }
 
 .graph .labels.y-labels {
-  text-anchor: end;
-}*/
+  /*text-anchor: end;*/
+}
 
 .graph {
   height: 500px;
@@ -23,6 +25,7 @@ body {
 
 .y-grid-children {
   stroke-dasharray: 5;
+  fill: rgb(229,229,229);
 }
 
 .labels {

@@ -40,7 +40,6 @@ const DataRender = () => {
     <div>
       <Chart
         data={plotpoints}
-        
         />
     </div>
   )
