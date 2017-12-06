@@ -2,7 +2,28 @@ h1 {
   color: red;
 }
 
-#chartContainer {
+.chart-container {
   height: 360px;
   width: 100%;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #eee;
+    shape-rendering: crispEdges;
+}
+ 
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.loading {
+    font-family: sans-serif;
+    font-size: 15px;
+}
+
+.circle {
+    fill: #222;
 }

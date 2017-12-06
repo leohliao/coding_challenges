@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Graph from './components/graph.jsx';
+import Chart from './components/chart';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
-  ReactDOM.render(<Graph />, root);
+  ReactDOM.render(<Chart />, root);
 });
